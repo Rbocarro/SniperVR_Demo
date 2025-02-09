@@ -52,7 +52,8 @@ public class ParabolicBullet : MonoBehaviour
 
     private bool CastRayBetweenPoints(Vector3 startPoint, Vector3 endPoint, out RaycastHit hit)
     {
-        Debug.DrawRay(startPoint, endPoint - startPoint, Color.green, 5);
+       
+        Debug.DrawRay(startPoint, endPoint - startPoint, Color.red, 5);
         return Physics.Raycast(startPoint, endPoint - startPoint, out hit, (endPoint - startPoint).magnitude);
     }
 
