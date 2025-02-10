@@ -11,9 +11,16 @@ public struct HitInfo
     public bool destroyBullet;
 }
 
+public struct BulletType
+{   
+    public string bulletName;
+    public float bulletMass;
+    public float bulletVelocity;
+}
+
 public class ParabolicBullet : MonoBehaviour
 {
-
+    public BulletType bulletType;
     private Vector2 wind;
     private float speed;
     private float gravity;
@@ -21,6 +28,12 @@ public class ParabolicBullet : MonoBehaviour
     private Vector3 startForward;
     private bool isInitialized = false;
     private float startTime = -1;
+
+    ParabolicBullet() { }
+    ParabolicBullet(BulletType bulletType)
+    {
+    this.bulletType = bulletType;  
+    }
 
     public void Initialize(Transform startPoint, float speed, float gravity, Vector2 wind)
     {
