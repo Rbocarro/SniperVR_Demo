@@ -2835,7 +2835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.076
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2843,7 +2843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.271
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3299,9 +3299,11 @@ MonoBehaviour:
   shootingSpeed: 865
   gravityForce: 9.8
   bulletLifeTime: 12
+  bulletCount: 0
   windManager: {fileID: 2130594822}
   rb: {fileID: 1281959275}
   gunshotSound: {fileID: 8300000, guid: 006b06d984b92c246bf7652866488766, type: 3}
+  emptyBulletClip: {fileID: 8300000, guid: 1f58908668781c24ca5785156aa68e5a, type: 3}
   audioSource: {fileID: 1281959281}
   volume: 0.1
   lensCamera: {fileID: 290674725}
