@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ShootingManager : MonoBehaviour
 {
     public GameObject bulletPref;
+    public GameObject trigger;
     public Transform shootPoint;
     float elapsedSinceLastShotTime = 0;
     public float reloadTime = 1f;
@@ -14,6 +15,9 @@ public class ShootingManager : MonoBehaviour
     public float gravityForce;
     public float bulletLifeTime;
     public int bulletCount;
+    [Space]
+    public GameObject bulletDecal;
+    public float bulletDecalLifetime;
     [Space]
     public WindManager windManager;
     public Rigidbody rb;
@@ -78,7 +82,6 @@ public class ShootingManager : MonoBehaviour
             audioSource.PlayOneShot(gunshotSound, volume);
 
 
-            rb.AddForce(Vector3.up * 300f, ForceMode.Impulse);
             GameObject bullet = Instantiate(bulletPref, shootPoint.position, shootPoint.rotation);
             ParabolicBullet bulletScript = bullet.GetComponent<ParabolicBullet>();
             if (bulletScript)

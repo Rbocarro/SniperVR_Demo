@@ -6,6 +6,7 @@ public struct HitInfo
 {
     public RaycastHit hit;
     public Vector3 hitDirection;
+    public Vector3 hitTestDirection;
     public float hitSpeed;
     public ParabolicBullet bullet;
     public bool destroyBullet;
@@ -29,11 +30,8 @@ public class ParabolicBullet : MonoBehaviour
     private bool isInitialized = false;
     private float startTime = -1;
 
-    ParabolicBullet() { }
-    ParabolicBullet(BulletType bulletType)
-    {
-    this.bulletType = bulletType;  
-    }
+
+
 
     public void Initialize(Transform startPoint, float speed, float gravity, Vector2 wind)
     {
@@ -46,14 +44,7 @@ public class ParabolicBullet : MonoBehaviour
         startTime = -1f;
     }
 
-    public void Reinitialize(Vector3 startPosition, Vector3 startForward, float speed)
-    {
-        this.startPosition = startPosition;
-        this.startForward = startForward;
-        this.speed = speed;
-        isInitialized = true;
-        startTime = -1f;
-    }
+
 
     private Vector3 FindPointOnParabola(float time)
     {
@@ -72,6 +63,7 @@ public class ParabolicBullet : MonoBehaviour
 
     private void OnHit(RaycastHit hit, Vector3 hitVector)
     {
+        ShootableObject[] shootableObjects = hit.transform.GetComponents<ShootableObject>();
         HitInfo hitInfo = new HitInfo
         {
             hit = hit,
@@ -80,6 +72,10 @@ public class ParabolicBullet : MonoBehaviour
             bullet = this,
             destroyBullet = false
         };
+        foreach (ShootableObject shootableObject in shootableObjects)
+        {
+            shootableObject.OnHit(ref hitInfo);
+        }
         if (hitInfo.destroyBullet)
         {
             Destroy(gameObject);
