@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using System.Collections.Generic;
 
 public class ShootingManager : MonoBehaviour
 {
@@ -16,14 +19,12 @@ public class ShootingManager : MonoBehaviour
     public float bulletLifeTime;
     public int bulletCount;
     [Space]
-    public GameObject bulletDecal;
-    public float bulletDecalLifetime;
-    [Space]
     public WindManager windManager;
     public Rigidbody rb;
     [Space]
-    public AudioClip gunshotSound;
+    public AudioClip gunshotClip;
     public AudioClip emptyBulletClip;
+    public AudioClip magSlideInClip;
     public AudioSource audioSource;
     [SerializeField, Range(0f, 1f)]
     public float volume;
@@ -40,7 +41,7 @@ public class ShootingManager : MonoBehaviour
     {
         lensRay = new Ray();
         lensRayHit = new RaycastHit();
-        bulletCount = 10;
+        bulletCount = 0;
     }
 
     void Update()
@@ -66,6 +67,19 @@ public class ShootingManager : MonoBehaviour
 
         elapsedSinceLastShotTime += Time.deltaTime;
 
+
+
+
+        var inputDevices = new List<UnityEngine.XR.InputDevice>();
+        UnityEngine.XR.InputDevices.GetDevices(inputDevices);
+
+        foreach (var device in inputDevices)
+        {
+            Debug.Log(string.Format("Device found with name '{0}' and role '{1}'", device.name, device.characteristics.ToString()));
+        }
+
+
+
     }
 
     private void UpdateWindSlider()
@@ -79,7 +93,7 @@ public class ShootingManager : MonoBehaviour
     {
         if (elapsedSinceLastShotTime >= reloadTime && bulletCount > 0)
         {
-            audioSource.PlayOneShot(gunshotSound, volume);
+            audioSource.PlayOneShot(gunshotClip, volume);
 
 
             GameObject bullet = Instantiate(bulletPref, shootPoint.position, shootPoint.rotation);
@@ -95,5 +109,11 @@ public class ShootingManager : MonoBehaviour
         else if (bulletCount <= 0)
             audioSource.PlayOneShot(emptyBulletClip, volume);
     
+    }
+
+    public void resetAmmo()
+    {
+        bulletCount = 10;
+        audioSource.PlayOneShot(magSlideInClip, volume);
     }
 }

@@ -13,8 +13,9 @@ public class WallHit : ShootableObject
                                                                    hitInfo.hit.point + hitInfo.hit.normal * 0.005f,
                                                                    Quaternion.FromToRotation(Vector3.up,hitInfo.hit.normal),
                                                                    transform.root.parent);
-
        Destroy(instantiatedParticles, particleLifeTime);
+       hitInfo.destroyBullet=true;
+
     }
 }
 
