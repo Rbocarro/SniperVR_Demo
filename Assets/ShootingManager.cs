@@ -11,6 +11,7 @@ public class ShootingManager : MonoBehaviour
 {
     public GameObject bulletPref;
     public GameObject trigger;
+    public ParticleSystem muzzleFlash;
     public Transform shootPoint;
     float elapsedSinceLastShotTime = 0;
     public float reloadTime = 1f;
@@ -50,8 +51,7 @@ public class ShootingManager : MonoBehaviour
         lensRay.direction = lensCamera.transform.forward;
 
         UpdateWindSlider();
-        // Check if the ray hits something withinthe max distance
-        if (Physics.Raycast(lensRay, out lensRayHit, lensRaycastMaxDistance))
+        if (Physics.Raycast(lensRay, out lensRayHit, lensRaycastMaxDistance)) // Check if the ray hits something withinthe max distance
         {
             // Calculate the distance to the hit point
             float distance = lensRayHit.distance;
@@ -62,24 +62,11 @@ public class ShootingManager : MonoBehaviour
         }
         else
         {
-            distanceText.text = "";
+            distanceText.text = "Dist: "+ lensRaycastMaxDistance.ToString()+"m+"+
+                                "\nAmmo: " + bulletCount; ;
         }
 
         elapsedSinceLastShotTime += Time.deltaTime;
-
-
-
-
-        var inputDevices = new List<UnityEngine.XR.InputDevice>();
-        UnityEngine.XR.InputDevices.GetDevices(inputDevices);
-
-        foreach (var device in inputDevices)
-        {
-            Debug.Log(string.Format("Device found with name '{0}' and role '{1}'", device.name, device.characteristics.ToString()));
-        }
-
-
-
     }
 
     private void UpdateWindSlider()
@@ -94,7 +81,9 @@ public class ShootingManager : MonoBehaviour
         if (elapsedSinceLastShotTime >= reloadTime && bulletCount > 0)
         {
             audioSource.PlayOneShot(gunshotClip, volume);
-
+            ParticleSystem flash = Instantiate(muzzleFlash, shootPoint.position, shootPoint.rotation);
+            flash.Play();
+            Destroy(flash.gameObject, flash.main.duration);
 
             GameObject bullet = Instantiate(bulletPref, shootPoint.position, shootPoint.rotation);
             ParabolicBullet bulletScript = bullet.GetComponent<ParabolicBullet>();
@@ -108,7 +97,6 @@ public class ShootingManager : MonoBehaviour
         }
         else if (bulletCount <= 0)
             audioSource.PlayOneShot(emptyBulletClip, volume);
-    
     }
 
     public void resetAmmo()

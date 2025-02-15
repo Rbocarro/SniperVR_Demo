@@ -2581,6 +2581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPref: {fileID: 6636116303632306245, guid: a802c80f3af9082428f42b90818222b3, type: 3}
   trigger: {fileID: 2070060982}
+  muzzleFlash: {fileID: 7692336672675980230, guid: ab3efdcb3e4feb14d882aa1cac56309f, type: 3}
   shootPoint: {fileID: 1250746978}
   reloadTime: 1.25
   shootingSpeed: 865
@@ -4176,10 +4177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9899eb11bc63b41b12e530f43da85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windDelta: 0
-  windUpdateTime: 300
-  windMaxMagnitude: 0
-  windStartMaxMagnitude: 0
+  windDelta: 3
+  windUpdateTime: 15
+  windMaxMagnitude: 15
+  windStartMaxMagnitude: 3
   wind: {x: 0, y: 0}
   WindPointer: {fileID: 957685609}
 --- !u!4 &2130594823
@@ -4256,7 +4257,7 @@ Transform:
   m_GameObject: {fileID: 8503323769938613967}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.69907105, w: 0.71505225}
-  m_LocalPosition: {x: -0.011, y: 1.19, z: 1.757}
+  m_LocalPosition: {x: 0.18, y: 1.19, z: 1.796}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
