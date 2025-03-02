@@ -2244,7 +2244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 194867683f94f674eaff55cf21477f5a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.536
+      value: 0.589
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 194867683f94f674eaff55cf21477f5a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2473,8 +2473,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4257,7 +4257,7 @@ Transform:
   m_GameObject: {fileID: 8503323769938613967}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.69907105, w: 0.71505225}
-  m_LocalPosition: {x: 0.18, y: 1.19, z: 1.796}
+  m_LocalPosition: {x: -0.298, y: 1.19, z: 1.796}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []

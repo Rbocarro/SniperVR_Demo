@@ -81,10 +81,9 @@ public class ShootingManager : MonoBehaviour
         if (elapsedSinceLastShotTime >= reloadTime && bulletCount > 0)
         {
             audioSource.PlayOneShot(gunshotClip, volume);
-            ParticleSystem flash = Instantiate(muzzleFlash, shootPoint.position, shootPoint.rotation);
+            ParticleSystem flash = Instantiate(muzzleFlash, shootPoint.position,Quaternion.identity);
             flash.Play();
             Destroy(flash.gameObject, flash.main.duration);
-
             GameObject bullet = Instantiate(bulletPref, shootPoint.position, shootPoint.rotation);
             ParabolicBullet bulletScript = bullet.GetComponent<ParabolicBullet>();
             if (bulletScript)
